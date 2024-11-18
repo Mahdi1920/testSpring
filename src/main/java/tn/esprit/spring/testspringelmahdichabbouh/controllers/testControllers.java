@@ -4,7 +4,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.testspringelmahdichabbouh.entites.Article;
 import tn.esprit.spring.testspringelmahdichabbouh.entites.Personne;
+import tn.esprit.spring.testspringelmahdichabbouh.entites.TypePersonne;
 import tn.esprit.spring.testspringelmahdichabbouh.servicesInterfaces.testServices;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/test")
@@ -26,5 +30,9 @@ public class testControllers {
     @GetMapping("/article/chercherArticle/{nomArticle}")
     public boolean chercherArticle(String nomArticle) {
         return service.chercherArticle(nomArticle);
+    }
+    @GetMapping("/personne/recupererPersonnessParCriteres/{nomCategorie}/{d}/{tp}")
+    public List<Personne> recupererPersonnessParCriteres(@PathVariable String  nomCategorie, @PathVariable LocalDate d, @PathVariable TypePersonne tp) {
+        return service.recupererPersonnessParCriteres(nomCategorie, d, tp);
     }
 }

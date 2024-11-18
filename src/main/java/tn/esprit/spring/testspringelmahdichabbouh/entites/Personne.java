@@ -1,5 +1,6 @@
 package tn.esprit.spring.testspringelmahdichabbouh.entites;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -26,5 +27,6 @@ public class Personne {
     @Enumerated(EnumType.STRING)
     TypePersonne typePersonne;
     @OneToMany
-    List<Article> ArticlesList = new ArrayList<>();
+    @JsonIgnore
+    List<Article> articlesList = new ArrayList<>();
 }

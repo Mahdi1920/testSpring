@@ -12,6 +12,6 @@ public interface testServices {
     public Article ajouterArticleEtCategories (Article a);
     public void affecterArticleAPersonne(String nomArticle, String email);
     public boolean chercherArticle (String nomArticle);
-
     public List<Personne> recupererPersonnessParCriteres(String nomCategorie, LocalDate d, TypePersonne tp);
+    public void afficherEtMettreAJourArticles ();
 }

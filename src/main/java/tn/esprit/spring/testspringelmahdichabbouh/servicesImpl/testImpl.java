@@ -58,10 +58,6 @@ public class testImpl implements testServices {
     @Scheduled(cron = "*/10 * * * * *" )
     @Transactional
     public void afficherEtMettreAJourArticles() {
-        //List<Personne> admines=personneRepo.findByTypePersonne(TypePersonne.ADMIN);
-        //log.info(admines.get(0).toString());
-       //List<Personne> personnes = personneRepo.findAll();
-
         for (Personne personne :personneRepo.findAll()){
             if(personne.getTypePersonne()==TypePersonne.ADMIN){
                 for(Article article :personne.getArticlesList()){

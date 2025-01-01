@@ -14,4 +14,5 @@ public interface testServices {
     public boolean chercherArticle (String nomArticle);
     public List<Personne> recupererPersonnessParCriteres(String nomCategorie, LocalDate d, TypePersonne tp);
     public void afficherEtMettreAJourArticles ();
+    public Article retrieveArticle(String nomArticle);
 }

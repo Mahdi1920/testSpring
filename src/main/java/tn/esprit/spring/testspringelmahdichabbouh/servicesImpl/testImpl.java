@@ -68,4 +68,9 @@ public class testImpl implements testServices {
 
         }
     }
+
+    @Override
+    public Article retrieveArticle(String nomArticle) {
+        return articleRepo.findByNomLike(nomArticle);
+    }
 }

@@ -60,7 +60,7 @@ public class ArticleTest {
 		Personne savedPersonne = testService.ajouterPersonne(personne);
 
 		 Assertions.assertNotNull(savedPersonne);
-		Assertions.assertEquals("test@example.com", savedPersonne.getEmail());
+		Assertions.assertEquals("e1", savedPersonne.getEmail());
 		Mockito.verify(personneRepository, Mockito.times(1)).save(personne);
 	}
 

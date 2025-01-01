@@ -1,6 +1,7 @@
 package tn.esprit.spring.testspringelmahdichabbouh;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,9 +26,20 @@ import java.util.Optional;
 public class ArticleTest {
 	@Mock
 	PersonneRepsitory personneRepository;
+	@Mock
+	private ArticleRepository articleRepo;
 	@InjectMocks
-	testImpl articleService;
-	Personne personne = Personne.builder().email("e1").dateInscri(LocalDate.now()).typePersonne(TypePersonne.ADMIN).build();
+	testImpl testService;
+
+	Article article = Article.builder()
+				.nom("a1")
+				.etat(Etat.VERIF_EN_COUR)
+				.build();
+	Personne personne = Personne.builder()
+			.email("e1")
+			.dateInscri(LocalDate.now())
+			.typePersonne(TypePersonne.ADMIN)
+			.build();
 	List<Personne> litPersonnes = new ArrayList<>() {
 		{
 			add(Personne.builder().email("e2").dateInscri(LocalDate.now()).typePersonne(TypePersonne.ADMIN).build());
@@ -36,9 +48,20 @@ public class ArticleTest {
 	};
 
 	@Test
-	public void testRetrieveUser() {
+	public void testRetrievePersonne() {
 		Mockito.when(personneRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(personne));
-		Personne personne1 = articleService.retrievePersonne(1);
+		Personne personne1 = testService.retrievePersonne(1);
 		Assertions.assertNotNull(personne1);
 	}
+	@Test
+	void testAjouterPersonne() {
+		Mockito.when(personneRepository.save(Mockito.any(Personne.class))).thenReturn(personne);
+
+		Personne savedPersonne = testService.ajouterPersonne(personne);
+
+		 Assertions.assertNotNull(savedPersonne);
+		Assertions.assertEquals("test@example.com", savedPersonne.getEmail());
+		Mockito.verify(personneRepository, Mockito.times(1)).save(personne);
+	}
+
 }

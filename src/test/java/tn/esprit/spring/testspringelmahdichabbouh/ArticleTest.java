@@ -38,7 +38,7 @@ public class ArticleTest {
 	@Test
 	public void testRetrieveUser() {
 		Mockito.when(personneRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(personne));
-		Personne personne1 = articleService.retrievePersonne(1L);
+		Personne personne1 = articleService.retrievePersonne(1);
 		Assertions.assertNotNull(personne1);
 	}
 }

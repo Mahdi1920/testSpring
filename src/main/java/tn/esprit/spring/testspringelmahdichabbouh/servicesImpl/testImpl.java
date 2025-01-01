@@ -75,7 +75,7 @@ public class testImpl implements testServices {
     }
 
     @Override
-    public Personne retrievePersonne(Long id) {
+    public Personne retrievePersonne(long id) {
        return personneRepo.findById(id).orElse(null);
     }
 }

@@ -9,7 +9,10 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import tn.esprit.spring.testspringelmahdichabbouh.entites.Article;
 import tn.esprit.spring.testspringelmahdichabbouh.entites.Etat;
+import tn.esprit.spring.testspringelmahdichabbouh.entites.Personne;
+import tn.esprit.spring.testspringelmahdichabbouh.entites.TypePersonne;
 import tn.esprit.spring.testspringelmahdichabbouh.repositories.ArticleRepository;
+import tn.esprit.spring.testspringelmahdichabbouh.repositories.PersonneRepsitory;
 import tn.esprit.spring.testspringelmahdichabbouh.servicesImpl.testImpl;
 
 import java.time.LocalDate;
@@ -21,21 +24,21 @@ import java.util.Optional;
 @ExtendWith(MockitoExtension.class)
 public class ArticleTest {
 	@Mock
-	ArticleRepository articleRepository;
+	PersonneRepsitory personneRepository;
 	@InjectMocks
 	testImpl articleService;
-	Article article=Article.builder().nom("a1").etat(Etat.BOYCOTT).build();
-	List<Article> listarticles = new ArrayList<Article>() {
+	Personne personne = Personne.builder().email("e1").dateInscri(LocalDate.now()).typePersonne(TypePersonne.ADMIN).build();
+	List<Personne> litPersonnes = new ArrayList<>() {
 		{
-			add(Article.builder().nom("a2").etat(Etat.BOYCOTT).build());
-			add(Article.builder().nom("a3").etat(Etat.VERIF_EN_COUR).build());
+			add(Personne.builder().email("e2").dateInscri(LocalDate.now()).typePersonne(TypePersonne.ADMIN).build());
+			add(Personne.builder().email("e3").dateInscri(LocalDate.now()).typePersonne(TypePersonne.ADMIN).build());
 		}
 	};
 
 	@Test
 	public void testRetrieveUser() {
-		Mockito.when(articleRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(article));
-		Article article1 = articleService.retrieveArticle("a1");
-		Assertions.assertNotNull(article1);
+		Mockito.when(personneRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(personne));
+		Personne personne1 = articleService.retrievePersonne(1L);
+		Assertions.assertNotNull(personne1);
 	}
 }

@@ -73,4 +73,9 @@ public class testImpl implements testServices {
     public Article retrieveArticle(String nomArticle) {
         return articleRepo.findByNomLike(nomArticle);
     }
+
+    @Override
+    public Personne retrievePersonne(Long id) {
+       return personneRepo.findById(id).orElse(null);
+    }
 }

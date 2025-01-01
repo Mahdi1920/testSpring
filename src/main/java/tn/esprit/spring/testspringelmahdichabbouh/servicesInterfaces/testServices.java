@@ -15,4 +15,5 @@ public interface testServices {
     public List<Personne> recupererPersonnessParCriteres(String nomCategorie, LocalDate d, TypePersonne tp);
     public void afficherEtMettreAJourArticles ();
     public Article retrieveArticle(String nomArticle);
+    public Personne retrievePersonne(Long id);
 }

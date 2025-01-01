@@ -16,6 +16,8 @@ import tn.esprit.spring.testspringelmahdichabbouh.repositories.PersonneRepsitory
 import tn.esprit.spring.testspringelmahdichabbouh.servicesImpl.testImpl;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
@@ -35,8 +37,14 @@ class ArticleTest {
 			.email("e1")
 			.dateInscri(LocalDate.now())
 			.typePersonne(TypePersonne.ADMIN)
+			.articlesList(new ArrayList<>())
 			.build();
-
+	List<Personne> litPersonnes = new ArrayList<>() {
+		{
+			add(Personne.builder().email("e2").dateInscri(LocalDate.now()).typePersonne(TypePersonne.ADMIN).build());
+			add(Personne.builder().email("e3").dateInscri(LocalDate.now()).typePersonne(TypePersonne.ADMIN).build());
+		}
+	};
 
 	@Test
 	 void testRetrievePersonne() {
@@ -59,7 +67,7 @@ class ArticleTest {
 		Mockito.when(personneRepository.findByEmailLike("e1")).thenReturn(personne);
 		Mockito.when(articleRepo.findByNomLike("a1")).thenReturn(article);
 
-		testService.affecterArticleAPersonne("Test Article", "test@example.com");
+		testService.affecterArticleAPersonne("a1", "e1");
 
 		Assertions.assertTrue(personne.getArticlesList().contains(article));
 		Mockito.verify(personneRepository, Mockito.times(1)).findByEmailLike("e1");

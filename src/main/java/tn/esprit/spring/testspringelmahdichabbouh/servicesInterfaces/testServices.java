@@ -1,6 +1,7 @@
 package tn.esprit.spring.testspringelmahdichabbouh.servicesInterfaces;
 
 import tn.esprit.spring.testspringelmahdichabbouh.entites.Article;
+import tn.esprit.spring.testspringelmahdichabbouh.entites.Categorie;
 import tn.esprit.spring.testspringelmahdichabbouh.entites.Personne;
 import tn.esprit.spring.testspringelmahdichabbouh.entites.TypePersonne;
 
@@ -16,4 +17,6 @@ public interface testServices {
     public void afficherEtMettreAJourArticles ();
     public Article retrieveArticle(String nomArticle);
     public Personne retrievePersonne(long id);
+
+    public Categorie ajouterCategorie(Categorie c);
 }

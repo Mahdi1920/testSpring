@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import tn.esprit.spring.testspringelmahdichabbouh.entites.Article;
-import tn.esprit.spring.testspringelmahdichabbouh.entites.Etat;
-import tn.esprit.spring.testspringelmahdichabbouh.entites.Personne;
-import tn.esprit.spring.testspringelmahdichabbouh.entites.TypePersonne;
+import tn.esprit.spring.testspringelmahdichabbouh.entites.*;
 import tn.esprit.spring.testspringelmahdichabbouh.repositories.ArticleRepository;
 import tn.esprit.spring.testspringelmahdichabbouh.repositories.CategoryRepository;
 import tn.esprit.spring.testspringelmahdichabbouh.repositories.PersonneRepsitory;
@@ -77,5 +74,10 @@ public class testImpl implements testServices {
     @Override
     public Personne retrievePersonne(long id) {
        return personneRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    public Categorie ajouterCategorie(Categorie c) {
+        return categoryRepo.save(c);
     }
 }
